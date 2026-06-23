@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Panel | University Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="student">
+  <header class="topbar">
+    <div class="brand">
+      <div>
+        <strong>Student Panel</strong>
+        <span>Event Registration</span>
+      </div>
+    </div>
+    <div class="session-box" id="sessionBox">
+      <span id="sessionUser">Student</span>
+      <button type="button" id="logoutBtn" class="ghost-btn">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Student panel</p>
+        <h1>Explore approved university events and register.</h1>
+        <p>Use your valid university roll number, department, phone, and email to participate.</p>
+      </div>
+      <div class="hero-stats" aria-label="Portal statistics">
+        <div>
+          <span id="heroEvents">0</span>
+          <small>Approved events</small>
+        </div>
+        <div>
+          <span id="heroRegistrations">0</span>
+          <small>Registrations</small>
+        </div>
+        <div>
+          <span id="heroDepartments">0</span>
+          <small>Departments</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel active">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Available events</p>
+          <h2>Explore and Register</h2>
+        </div>
+        <div class="filters">
+          <input id="studentSearch" type="search" placeholder="Search events">
+          <select id="studentLocationFilter" aria-label="Filter by location">
+            <option value="">All locations</option>
+          </select>
+          <select id="studentDepartmentFilter" aria-label="Filter by department">
+            <option value="">All departments</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="eventList" class="event-grid"></div>
+
+      <form id="registrationForm" class="form-shell hidden">
+        <div class="form-title">
+          <div>
+            <p class="eyebrow">Registration</p>
+            <h3 id="selectedEventTitle">Selected Event</h3>
+          </div>
+          <button type="button" class="icon-close" id="closeRegistration" aria-label="Close registration form">x</button>
+        </div>
+        <input type="hidden" id="registerEventId">
+        <input type="hidden" id="registrationId">
+        <div class="form-grid">
+          <label>
+            Student Name
+            <input id="studentName" type="text" placeholder="Enter full name" required>
+          </label>
+          <label>
+            Roll Number
+            <input id="studentRoll" type="text" placeholder="H220001 to H250999" maxlength="7" required>
+          </label>
+          <label>
+            Phone Number
+            <input id="studentPhone" type="tel" placeholder="10 digit mobile number" maxlength="10" required>
+          </label>
+          <label>
+            Email
+            <input id="studentEmail" type="email" placeholder="student@example.com" required>
+          </label>
+          <label>
+            Department / Stream
+            <select id="studentDepartment" required></select>
+          </label>
+        </div>
+        <button class="primary-btn" id="registrationSubmitBtn" type="submit">Submit Registration</button>
+      </form>
+
+      <div class="list-panel registrations-panel">
+        <div class="list-heading">
+          <div>
+            <p class="eyebrow">My registrations</p>
+            <h3>Events You Registered In</h3>
+          </div>
+        </div>
+        <div id="studentRegistrationList" class="stack-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

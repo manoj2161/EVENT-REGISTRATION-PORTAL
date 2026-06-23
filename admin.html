@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | University Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="admin">
+  <header class="topbar">
+    <div class="brand">
+      <div>
+        <strong>Admin Panel</strong>
+        <span>Manage Events</span>
+      </div>
+    </div>
+    <div class="session-box" id="sessionBox">
+      <span id="sessionUser">Admin</span>
+      <button type="button" id="logoutBtn" class="ghost-btn">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Admin panel</p>
+        <h1>Manage events, approvals, and registrations.</h1>
+        <p>Create approved events directly, approve organizer requests, review student data, and export registrations.</p>
+      </div>
+      <div class="hero-stats" aria-label="Portal statistics">
+        <div>
+          <span id="totalEvents">0</span>
+          <small>Total events</small>
+        </div>
+        <div>
+          <span id="pendingEvents">0</span>
+          <small>Pending approval</small>
+        </div>
+        <div>
+          <span id="totalRegistrations">0</span>
+          <small>Registrations</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel active">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Admin workspace</p>
+          <h2>Manage Events and Registrations</h2>
+        </div>
+        <button id="exportRegistrations" type="button" class="secondary-btn">Export CSV</button>
+      </div>
+
+      <div class="admin-stats">
+        <article>
+          <span id="availableSeats">0</span>
+          <small>Open seats</small>
+        </article>
+        <article>
+          <span id="heroEvents">0</span>
+          <small>Approved events</small>
+        </article>
+        <article>
+          <span id="heroDepartments">0</span>
+          <small>Departments</small>
+        </article>
+        <article>
+          <span id="heroRegistrations">0</span>
+          <small>Student registrations</small>
+        </article>
+      </div>
+
+      <div class="split-layout">
+        <form id="adminEventForm" class="form-shell compact">
+          <h3>Create Approved Event</h3>
+          <div class="form-grid">
+            <label>
+              Event Title
+              <input id="adminEventTitle" type="text" placeholder="Freshers Orientation" required>
+            </label>
+            <label>
+              Organizer
+              <input id="adminEventOrganizer" type="text" placeholder="Admin Office" required>
+            </label>
+            <label>
+              Date
+              <input id="adminEventDate" type="date" required>
+            </label>
+            <label>
+              Time
+              <input id="adminEventTime" type="time" required>
+            </label>
+            <label>
+              Location
+              <select id="adminEventLocation" required></select>
+            </label>
+            <label>
+              Eligible Departments
+              <select id="adminEventDepartment" multiple required></select>
+            </label>
+            <label>
+              Seats
+              <input id="adminEventSeats" type="number" min="1" max="500" value="120" required>
+            </label>
+          </div>
+          <label>
+            Description
+            <textarea id="adminEventDescription" rows="3" required></textarea>
+          </label>
+          <button class="primary-btn" type="submit">Create Event</button>
+        </form>
+
+        <div class="list-panel">
+          <div class="list-heading">
+            <h3>Event Control</h3>
+            <select id="adminStatusFilter" aria-label="Filter admin events">
+              <option value="">All events</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div id="adminEventList" class="stack-list"></div>
+        </div>
+      </div>
+
+      <div class="list-panel registrations-panel">
+        <div class="list-heading">
+          <h3>Registered Students</h3>
+          <input id="registrationSearch" type="search" placeholder="Search student, roll, event">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Roll No.</th>
+                <th>Department</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Event</th>
+              </tr>
+            </thead>
+            <tbody id="registrationTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

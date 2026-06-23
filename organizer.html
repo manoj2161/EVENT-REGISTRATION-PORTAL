@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizer Panel | University Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="organizer">
+  <header class="topbar">
+    <div class="brand">
+      <div>
+        <strong>Organizer Panel</strong>
+        <span>Create Events</span>
+      </div>
+    </div>
+    <div class="session-box" id="sessionBox">
+      <span id="sessionUser">Organizer</span>
+      <button type="button" id="logoutBtn" class="ghost-btn">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Organizer panel</p>
+        <h1>Create events for admin approval.</h1>
+        <p>Submit campus events with date, time, location, seats, department eligibility, and event details.</p>
+      </div>
+      <div class="hero-stats" aria-label="Portal statistics">
+        <div>
+          <span id="heroEvents">0</span>
+          <small>Approved events</small>
+        </div>
+        <div>
+          <span id="pendingEvents">0</span>
+          <small>Pending events</small>
+        </div>
+        <div>
+          <span id="heroDepartments">0</span>
+          <small>Departments</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel active">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Organizer workspace</p>
+          <h2>Create University Events</h2>
+        </div>
+        <span class="status-pill">Organizer submissions need admin approval</span>
+      </div>
+
+      <div class="split-layout">
+        <form id="organizerEventForm" class="form-shell">
+          <h3>New Event</h3>
+          <div class="form-grid">
+            <label>
+              Event Title
+              <input id="orgEventTitle" type="text" placeholder="Tech Symposium" required>
+            </label>
+            <label>
+              Organizer Name
+              <input id="orgName" type="text" placeholder="Department Club / Faculty" required>
+            </label>
+            <label>
+              Date
+              <input id="orgEventDate" type="date" required>
+            </label>
+            <label>
+              Time
+              <input id="orgEventTime" type="time" required>
+            </label>
+            <label>
+              Location
+              <select id="orgEventLocation" required></select>
+            </label>
+            <label>
+              Eligible Departments
+              <select id="orgEventDepartment" multiple required></select>
+            </label>
+            <label>
+              Seats
+              <input id="orgEventSeats" type="number" min="1" max="500" value="80" required>
+            </label>
+          </div>
+          <label>
+            Event Description
+            <textarea id="orgEventDescription" rows="4" placeholder="Describe event theme, activities, rules, or eligibility." required></textarea>
+          </label>
+          <button class="primary-btn" type="submit">Send for Approval</button>
+        </form>
+
+        <div class="list-panel">
+          <div class="list-heading">
+            <h3>My Created Events</h3>
+            <button id="clearOrganizerDrafts" type="button" class="ghost-btn">Reset Demo Data</button>
+          </div>
+          <div id="organizerEventList" class="stack-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
