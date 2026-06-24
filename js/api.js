@@ -114,6 +114,7 @@
       }
       data.users = normalizeUsers(data.users);
       data.events = normalizeEvents(data.events || []);
+      data.registrations = Array.isArray(data.registrations) ? data.registrations : [];
       saveData(data);
       return data;
     } catch (error) {
@@ -348,9 +349,13 @@
   }
 
   function resetDemoData() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(seedData));
+    const data = loadData();
+    data.events = clone(seedData.events);
+    data.registrations = [];
+    data.users = normalizeUsers(data.users || clone(seedData.users));
+    saveData(data);
     localStorage.removeItem(SESSION_KEY);
-    return clone(seedData);
+    return clone(data);
   }
 
   window.PortalAPI = {
