@@ -1,39 +1,69 @@
 # University Event Registration Portal
 
-This is a university-level HTML, CSS, and JavaScript project for managing campus events.
+A role-based university event management and registration web application built with HTML, CSS, and JavaScript. The project provides separate workflows for students, organizers, and administrators, with event approval and registration management built into the application.
 
-## Panels
+## Live Demo
 
-- Student panel: View approved events, filter events, and register with name, roll number, phone, email, and department.
-- Organizer panel: Create event requests for admin approval.
-- Admin panel: Create approved events, approve or reject organizer events, delete events, view registrations, and export registrations as CSV.
+Add your deployed project URL here.
 
-## Login and Signup
+## Overview
 
-The project includes a login/signup screen. After login, users are automatically linked to their correct panel based on role.
+The portal models a university event workflow from event creation to student registration:
 
-Demo accounts:
+```text
+Organizer creates event
+        ↓
+Admin reviews event
+   ┌────┴────┐
+ Approve   Reject
+    ↓
+Published Event
+    ↓
+Student Registration
+    ↓
+Admin Registration Management
+```
 
-- Student: `student@university.edu`
-- Organizer: `organizer@university.edu`
-- Admin: `thakurmanu065@gmail.com`
+## Roles & Features
 
-Student and organizer password: `password123`
-Admin password: `Manu@2621`
+### Student
 
-Users can sign up only as students or organizers. Admin signup is disabled, and the only admin account is Manoj.
+- View approved events
+- Filter available events
+- Register for eligible events
+- Registration form validation
+- Prevent duplicate registrations
+- View registered events
+- Edit registration information
+- Cancel registrations
 
-## Roll Number Rule
+### Organizer
 
-Student roll numbers are accepted only from `H220001` to `H250999`.
+- Submit event requests
+- Select multiple eligible departments
+- Provide event details for admin review
 
-A student cannot register again for the same event. The system blocks duplicate registration using the logged-in account, roll number, or email address.
+### Admin
 
-Students can see their registered events below the registration form. They can edit submitted information or cancel a registration.
+- Create and manage approved events
+- Review organizer event requests
+- Approve or reject event requests
+- Delete events
+- View student registrations
+- Export registration data as CSV
+- Manage the event workflow from a central panel
 
-Organizers and admins can select multiple eligible departments for one event, so students from more than one department can participate.
+## Validation & Business Rules
 
-## Departments Included
+- Student roll numbers are validated against the configured university roll-number range.
+- Students cannot register more than once for the same event.
+- Duplicate registration checks use the logged-in account, roll number, and email address.
+- Events can target multiple eligible departments.
+- Admin signup is disabled in the application.
+
+## Departments
+
+The application includes departments such as:
 
 - C.S.E - BCA
 - C.S.E - B.Tech
@@ -54,16 +84,60 @@ Organizers and admins can select multiple eligible departments for one event, so
 - MP Hall
 - Ground
 
-## Data Handling
+## Tech Stack
 
-The project currently uses `localStorage` through `js/api.js`. This file acts like a small API layer, so it can later be replaced with real backend API calls and a database without changing most of the user interface code.
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- LocalStorage
+- CSV data export
+- Responsive web design
 
-## Files
+## Data Layer
 
-- `index.html` - Login and signup page
-- `student.html` - Student event browsing and registration page
-- `organizer.html` - Organizer event creation page
-- `admin.html` - Admin event approval and registration management page
-- `css/styles.css` - Complete responsive styling
-- `js/api.js` - Temporary data/API logic
-- `js/app.js` - Page routing, forms, validation, filtering, and rendering
+The current version uses `localStorage` through `js/api.js` as a browser-based data layer. The API-style separation is intentional so the frontend can later be connected to a real backend API and database with less impact on the UI layer.
+
+## Project Structure
+
+```text
+EVENT-REGISTRATION-PORTAL/
+├── index.html          # Login and signup
+├── student.html        # Student dashboard and registration
+├── organizer.html      # Organizer event requests
+├── admin.html          # Admin management panel
+├── css/
+│   └── styles.css      # Responsive application styling
+└── js/
+    ├── api.js          # Local data/API abstraction
+    └── app.js          # Routing, validation, filtering, and rendering
+```
+
+## Getting Started
+
+```bash
+git clone https://github.com/manoj2161/EVENT-REGISTRATION-PORTAL.git
+cd EVENT-REGISTRATION-PORTAL
+```
+
+Open `index.html` in a browser or use a local development server such as VS Code Live Server.
+
+## What I Practiced
+
+This project strengthened practical frontend development skills including DOM manipulation, JavaScript application logic, form validation, role-based UI flows, browser storage, data filtering, CRUD-style interactions, responsive design, and CSV export.
+
+## Future Improvements
+
+- Replace `localStorage` with a Node.js/Express backend
+- Add MongoDB for persistent multi-user data
+- Implement secure authentication and authorization
+- Add email notifications for event approvals and registrations
+- Add event capacity management
+- Add deployment and production-ready API architecture
+
+## Author
+
+**Manoj Kumar**
+
+- GitHub: https://github.com/manoj2161
+- Portfolio: https://manoj-portfolio-21.vercel.app/
+- LinkedIn: https://www.linkedin.com/in/manoj-kumar-811245200
