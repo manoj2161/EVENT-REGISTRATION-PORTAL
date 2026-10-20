@@ -1,9 +1,7 @@
 # University Event Registration Portal
 
 A role-based university event management and registration web application built with HTML, CSS, and JavaScript. The project provides separate workflows for students, organizers, and administrators, with event approval and registration management built into the application.
-
 ## Live Demo
-
 Add your deployed project URL here.
 
 ## Overview
