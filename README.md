@@ -5,7 +5,6 @@ A role-based university event management and registration web application built 
 Add your deployed project URL here.
 
 ## Overview
-
 The portal models a university event workflow from event creation to student registration:
 
 ```text
